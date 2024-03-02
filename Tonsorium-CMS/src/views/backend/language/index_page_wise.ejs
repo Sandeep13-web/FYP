@@ -1,0 +1,208 @@
+<div class="main-content side-content pt-5">
+    <div class="container-fluid">
+        <div class="inner-body">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div>
+                    <h2 class="main-content-title tx-24 mg-b-5"><%= translateLanguage(pageTitle, session.translationdata) %></h2>
+                </div>
+
+
+                <div class="col-sm-6">
+
+                    <% if(checkPermissions(user, "languages.languages.export") == true) { %>
+                        <a style="margin-top: 7px; margin-right:2px; margin-left:2px"
+                           class="btn  btn-primary  pull-right btn-sm" href="/languages/download"><i
+                                    class="fa fa-download"
+                                    aria-hidden="true"></i> <%= translateLanguage('Download excel for backend', session.translationdata) %>
+                        </a>
+                    <% } %>
+                    <button style="margin-top: 7px; white-space: nowrap;" type="button"
+                            class="btn btn-primary pull-right mb-2 btn-sm" data-toggle="modal"
+                            data-target="#uploadExcelModal">
+                        <em class="fas fa-upload"
+                            aria-hidden="true"></em> <%= translateLanguage('Upload excel for backend', session.translationdata) %>
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="uploadExcelModal" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <form class="form-inline" id="reset-form" action="/languages/upload" method="POST"
+                                  enctype="multipart/form-data">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"
+                                            id="uploadExcelModal"><%= translateLanguage('Upload excel for backend', session.translationdata) %></h5>
+                                        <button type="button" class=" exit"
+                                                style="font-size: 1.5rem;background-color: transparent;border: 0; appearance: none; opacity: .5;"
+                                                data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-3 control-label"
+                                                   style="white-space: nowrap"><%= translateLanguage('Excel File', session.translationdata) %> </label>
+                                            <div class="col-sm-6">
+                                                <input type="file" name="file" class="form-control"
+                                                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default closed "
+                                                data-dismiss="modal"><%= translateLanguage('Close', session.translationdata) %></button>
+                                        <button type="submit"
+                                                class="btn btn-primary pull-right"><%= translateLanguage('Upload', session.translationdata) %></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- End Page Header -->
+            <% include ../partials/messages %>
+            <div class="card-body">
+                <form action="/languages" method="get" autocomplete="off">
+                    <div class="form-row align-items-center">
+                        <div class="col-auto mb-2" id="">
+                            <label class="sr-only" for="keyword">Keyword</label>
+                            <input type="text" class="form-control" value="" id="keyword" placeholder="<%= translateLanguage('keyword', session.translationdata,'検索キーワード') %>"
+                                   name="keyword">
+                        </div>
+                        <div class="col-auto mb-2" id="">
+                            <label class="sr-only" for="locale">Locale</label>
+                            <select name="locale" id="locale" class="form-control " data-prefix="system">
+                                <% languages.forEach(function(lang) { %>
+                                    <option value="<%= lang.language_code %>"><%= lang.name %></option>
+                                <% }); %>
+                            </select>
+                        </div>
+
+                        <div class="col-auto mb-2" id="">
+                            <label class="sr-only" for="group">Group</label>
+                            <select name="group" id="group" class="form-control " data-prefix="system">
+                                <% for (const key in groups) { %>
+                                <option value="<%- key %>"><%= groups[key] %></option>
+                                <% } %>
+                            </select>
+                        </div>
+                        <div class="form-row align-items-center">
+                            <button class="btn btn-primary mb-2 ml-2" type="submit"><em class="fas fa-search"
+                                                                                        aria-hidden="true"></em> Search
+                            </button>
+                            <a href="/languages" class="btn btn-light mb-2 ml-2">Clear</a>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+            <!-- Row -->
+        </div>
+        <!-- End Row -->
+    </div>
+
+    <div class="container-fluid">
+        <div class="inner-body">
+            <!-- Row -->
+            <div class="row row-sm">
+                <div class="col-lg-12">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <div class="table-responsive border">
+                                <div class="row">
+                                    <% if(!_.isEmpty(groupData)){ %>
+                                        <div class="col-lg-3"
+                                             style=" max-height: 500px; display: block; overflow-y: auto;">
+                                            <ul class="nav nav-tabs">
+
+
+                                                <li>
+                                                    <%
+                                                    for (var key in groupData) {
+                                                        if (groupData.hasOwnProperty(key)) {
+                                                            module = key ?? 'Basic';
+                                                            active = module === 'Basic' ?? 'active';
+                                                        }
+                                                    %>
+                                                    <a class="nav-link  language-grp <% if(active){ %> active <% }else{ %> <% } %>"
+                                                       id="nav-<%= module.replaceAll(' ', "-") %>-tab" data-toggle="tab"
+                                                       href="#nav-<%= module.replaceAll(' ', "-") %>" role="tab"
+                                                       aria-controls="nav-<%= module.replaceAll(' ', "-") %>"
+                                                       aria-selected="true"><%= translateLanguage(module, session.translationdata) %></a>
+                                                    <% } %>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="tab-content" id="nav-tabContent">
+
+                                                <%
+                                                for (var key in groupData) {
+                                                    sn = 1;
+                                                    if (groupData.hasOwnProperty(key)) {
+                                                        module = key ?? 'Basic';
+                                                        active = module === 'Basic' ?? 'active';
+                                                    }
+                                                %>
+                                                <div class="tab-pane fade <% if(active){ %> show  <% } %> <% if(active){ %> active <% } %>"
+                                                     id="nav-<%= module.replaceAll(' ', "-") %>" role="tabpanel"
+                                                     aria-labelledby="nav-<%= module.replaceAll(' ', "-") %>-tab">
+                                                    <table id="translationsTbl" class="table table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th><%= translateLanguage('SN', session.translationdata, 'Basic') %></th>
+                                                            <th><%= translateLanguage('Word', session.translationdata, 'Basic') %></th>
+                                                            <th><%= translateLanguage('Translation', session.translationdata, 'Basic') %></th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <% groupData[module].forEach(function(pageGroup) { %>
+                                                            <tr>
+                                                                <td><%= sn++ %></td>
+                                                                <td><%= pageGroup.word ? pageGroup.word : nil %></td>
+                                                                <td>
+                                                        <textarea name="text" class="form-control translation-content"
+                                                                  rows="1"
+                                                                  data-href="/languages/<%= pageGroup._id %>/edit"
+                                                                  data-page-url="<%- module %>"
+                                                                  data-group="<%- query.group ?? 'backend' %>"
+                                                                  data-locale="<%- query.locale ?? 'ja' %>"><%= pageGroup.translation ? pageGroup.translation : '' %></textarea>
+
+                                                                </td>
+                                                            </tr>
+                                                        <% }) %>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                                <% } %>
+
+                                            </div>
+                                        </div>
+                                    <% }else{ %>
+                                        <div style="width:10%; margin: 0 auto; white-space: nowrap">
+                                            <%= translateLanguage('No Records found.', session.translationdata) %>
+
+                                        </div>
+                                    <% } %>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/language.js" defer></script>
+<style>
+
+</style>

@@ -1,0 +1,28 @@
+'use strict';
+const sequelizePaginate = require('sequelize-paginate');
+
+module.exports = (sequelize, DataTypes) => {
+    let modelDefinition = {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            allowNull: false,
+            autoIncrement: true
+        },
+        _id: {
+            allowNull: false,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4
+        },
+        created_at: {type: DataTypes.DATE, defaultValue: sequelize.fn('now')},
+        updated_at: {type: DataTypes.DATE, defaultValue: sequelize.fn('now')}
+    };
+    let modelOptions = {
+        tableName: '%tableName%',
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
+    };
+    const %modelName% = sequelize.define('%modelName%', modelDefinition, modelOptions);
+    sequelizePaginate.paginate(%modelName%);
+    return %modelName%;
+};

@@ -1,0 +1,3 @@
+module.exports = {
+  access_token : "Bearer QjAKmP90ezePZC2DpGfJ2zRQvB9iP7Y13IDY0LtJO41g0FlAuwFCjpLdyp16lwghxzLjEDsPyaSPt0kfEkUyDJ7hg3BTqCm1u2FPHyUskYYDUMsEXADxkInX8lZqkbJTpH2iZNDE28hCsZ2Rg4fbOEmMeL4ZiTGW6JZMryguwG10grWe3hY3P5XtEX3tEZ2a44NqG2W5"
+};

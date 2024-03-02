@@ -1,0 +1,163 @@
+<!-- Main Content-->
+<div class="main-content side-content pt-5">
+    <div class="container-fluid">
+        <div class="inner-body">
+            <form action="/staffs/<%= data._id %>?_method=PUT" method="post" enctype="multipart/form-data">
+                <!-- Page Header -->
+                <div class="page-header sticky-header">
+                    <div>
+                        <h2 class="main-content-title tx-24 mg-b-5">
+                            <%= translateLanguage(pageTitle, session.translationdata) %>
+                        </h2>
+                        <% include ../partials/breadcrumb %>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-icon-text my-2 mr-2 main-save-btn" type="submit">
+                            <%= translateLanguage('Save', session.translationdata) %>
+                        </button>
+
+                        <a href="/staffs" >
+                            <button class="btn main-cancel-btn btn-icon-text my-2 mr-2" type="button">
+                                <%= translateLanguage('Cancel', session.translationdata) %>
+                            </button>
+                        </a>
+
+                    </div>
+                </div>
+                <!-- End Page Header -->
+                <!-- Row -->
+                <div class="row row-sm">
+                    <div class="col-lg-12">
+                        <% include ../partials/messages %>
+                            <div class="card custom-card">
+                                <input type="hidden" name="_csrf" value="<%-csrfToken%>">
+                                <div class="card custom-card">
+                                    <div class="card-body">
+                                        <div class="inner__card_b1">
+                                            <div class="row align-items-baseline mt-3">
+                                                <div class="col-lg-12">
+                                                    <div class="inner__border">
+                                                        <div class="form-group form-check d-flex align-items-baseline">
+                                                            <p class="inner__card cke_required">
+                                                                <b>
+                                                                    <%= translateLanguage('Staff Name',
+                                                                        session.translationdata) %>
+                                                                </b>
+                                                                <span style="color:red;">*</span></b>
+                                                            </p>
+                                                            </p>
+                                                            <input type="text" maxlength="50"
+                                                                value='<%= data && data.staffName ? data.staffName : '' %>'
+                                                                class="form-control" id="staffName" name="staffName" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row align-items-baseline ">
+                                                <div class="col-lg-12">
+                                                    <div class="inner__border">
+                                                        <div class="form-group form-check d-flex align-items-baseline">
+                                                            <p class="inner__card">
+                                                                <b>
+                                                                    <%= translateLanguage('Staff Position',
+                                                                        session.translationdata) %>
+                                                                </b>
+                                                                <span style="color:red;">*</span></b>
+                                                            </p>
+                                                            </p>
+                                                            <input type="text" maxlength="50"
+                                                                value='<%= data && data.staffPosition ? data.staffPosition : '' %>'
+                                                                class="form-control" id="staffPosition" name="staffPosition" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="row align-items-baseline ">
+                                                <div class="col-lg-12">
+                                                    <div class="inner__border">
+                                                        <div class="form-group form-check d-flex align-items-baseline">
+                                                            <p class="inner__card">
+                                                                <b>
+                                                                    <%= translateLanguage('Staff Description',
+                                                                        session.translationdata) %>
+                                                                </b>
+                                                                <span style="color:red;">*</span></b>
+                                                            </p>
+                                                            </p>
+                                                            <textarea class="form-control" id="staffDescription" name="staffDescription" required><%= data && data.staffDescription ? data.staffDescription : '' %></textarea>
+                                                      
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row align-items-baseline ">
+                                                <div class="col-lg-12">
+                                                    <div class="inner__border">
+                                                        <div class="form-group form-check d-flex align-items-baseline">
+                                                            <p class="inner__card">
+                                                                <b>
+                                                                    <%= translateLanguage('Available Days',
+                                                                        session.translationdata) %>
+                                                                </b>
+                                                                <span style="color:red;">*</span></b>
+                                                            </p>
+                                                            </p>
+                                                            <select class="select2" multiple name="availableDays" id="availableDays">
+                                                                <option value="sunday" <% if(data.availableDays.includes('sunday')) { %> selected <%} %> >Sunday</option>
+                                                                <option value="monday" <% if(data.availableDays.includes('monday')) { %> selected <%} %> >Monday</option>
+                                                                <option value="tuesday"<% if(data.availableDays.includes('tuesday')) { %> selected <%} %>>Tuesday</option>
+                                                                <option value="wednesday"<% if(data.availableDays.includes('wednesday')) { %> selected <%} %>>Wednesday</option>
+                                                                <option value="thursday"<% if(data.availableDays.includes('thursday')) { %> selected <%} %>>Thursday</option>
+                                                                <option value="friday"<% if(data.availableDays.includes('friday')) { %> selected <%} %>>Friday</option>
+                                                                <option value="saturday"<% if(data.availableDays.includes('saturday')) { %> selected <%} %>>Saturday</option>
+                                                            </select>
+    
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+                                            </div>
+
+                                            <div class="row align-items-baseline ">
+                                                <div class="col-lg-12">
+                                                    <div class="inner__border">
+                                                        <div class="form-group form-check d-flex align-items-baseline">
+                                                            <p class="inner__card">
+                                                                <b>
+                                                                    <%= translateLanguage('Staff Image',
+                                                                        session.translationdata) %>
+                                                                </b>
+                                                            </p>
+                                                            <input class="form-control" type="file" id="image" name="image"
+                                                            style="padding: 4px; height: 34px;"
+                                                            accept="image/png, image/jpeg, image/jpg">
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+                                            </div>
+                                    
+                                        </div>
+                                    </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- End Row -->
+    </div>
+</div>
+<!-- End Main Content-->
+<!-- <style>
+    .ck-content {
+        height: 500px !important;
+    }
+</style> -->

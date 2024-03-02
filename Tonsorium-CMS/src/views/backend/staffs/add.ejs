@@ -1,0 +1,165 @@
+<!-- Main Content-->
+<div class="main-content side-content pt-5">
+    <div class="container-fluid">
+        <div class="inner-body">
+
+            <!-- Page Header -->
+            <form action="/staffs" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="_csrf" value="<%-csrfToken%>">
+                <div class="page-header sticky-header">
+                    <div>
+                        <h2 class="main-content-title tx-24 mg-b-5">
+                            <%= translateLanguage(pageTitle, session.translationdata) %>
+                        </h2>
+                        <% include ../partials/breadcrumb %>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-end">
+                        <button class="btn main-save-btn btn-icon-text my-2 mr-2" type="submit">
+                            <%= translateLanguage('Save', session.translationdata) %>
+                        </button>
+
+                        <a href="/staffs" role="button">
+                            <button class="btn main-cancel-btn my-2 mr-2">
+                                <%= translateLanguage('Cancel', session.translationdata) %>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <!-- End Page Header -->
+                <!-- Row -->
+                <div class="row row-sm">
+                    <div class="col-lg-12">
+                        <% include ../partials/messages %>
+                            <div class="card custom-card">
+                                <div class="card-body">
+                                    <div class="inner__card_b1">
+                                        <div class="row align-items-baseline mt-3">
+                                            <div class="col-lg-12">
+                                                <div class="inner__border">
+                                                    <div class="form-group form-check d-flex align-items-baseline">
+                                                        <p class="inner__card cke_required">
+                                                            <b>
+                                                                <%= translateLanguage('Staff Name',
+                                                                    session.translationdata) %>
+                                                            </b>
+                                                            <span style="color:red;">*</span></b>
+                                                        </p>
+                                                        </p>
+                                                        <input type="text" maxlength="50"
+                                                            value='<%= inputData && inputData.staffName ? inputData.staffName : '' %>'
+                                                            class="form-control" id="staffName" name="staffName"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row align-items-baseline ">
+                                            <div class="col-lg-12">
+                                                <div class="inner__border">
+                                                    <div class="form-group form-check d-flex align-items-baseline">
+                                                        <p class="inner__card">
+                                                            <b>
+                                                                <%= translateLanguage('Staff Position',
+                                                                    session.translationdata) %>
+                                                            </b>
+                                                            <span style="color:red;">*</span></b>
+                                                        </p>
+                                                        </p>
+                                                        <input type="text" maxlength="50"
+                                                            value='<%= inputData && inputData.staffPosition ? inputData.staffPosition : '' %>'
+                                                            class="form-control" id="staffPosition" name="staffPosition"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="row align-items-baseline ">
+                                            <div class="col-lg-12">
+                                                <div class="inner__border">
+                                                    <div class="form-group form-check d-flex align-items-baseline">
+                                                        <p class="inner__card">
+                                                            <b>
+                                                                <%= translateLanguage('Staff Description',
+                                                                    session.translationdata) %>
+                                                            </b>
+                                                            <span style="color:red;">*</span></b>
+                                                        </p>
+                                                        </p>
+                                                        <textarea class="form-control" id="staffDescription"
+                                                            name="staffDescription"
+                                                            required><%= inputData && inputData.staffDescription ? inputData.staffDescription : '' %></textarea>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row align-items-baseline ">
+                                            <div class="col-lg-12">
+                                                <div class="inner__border">
+                                                    <div class="form-group form-check d-flex align-items-baseline">
+                                                        <p class="inner__card">
+                                                            <b>
+                                                                <%= translateLanguage('Available Days',
+                                                                    session.translationdata) %>
+                                                            </b>
+                                                            <span style="color:red;">*</span></b>
+                                                        </p>
+                                                        </p>
+                                                        <select class="select2" multiple name="availableDays" id="availableDays">
+                                                            <option value="sunday">Sunday</option>
+                                                            <option value="monday">Monday</option>
+                                                            <option value="tuesday">Tuesday</option>
+                                                            <option value="wednesday">Wednesday</option>
+                                                            <option value="thursday">Thursday</option>
+                                                            <option value="friday">Friday</option>
+                                                            <option value="saturday">Saturday</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row align-items-baseline ">
+                                            <div class="col-lg-12">
+                                                <div class="inner__border">
+                                                    <div class="form-group form-check d-flex align-items-baseline">
+                                                        <p class="inner__card">
+                                                            <b>
+                                                                <%= translateLanguage('Staff Image',
+                                                                    session.translationdata) %>
+                                                            </b>
+                                                        </p>
+                                                        <input class="form-control" type="file" id="image" name="image"
+                                                        style="padding: 4px; height: 34px;"
+                                                        accept="image/png, image/jpeg, image/jpg">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- End Row -->
+    </div>
+</div>
+<!-- End Main Content-->
+<style>
+    .ck-content {
+        height: 239px !important;
+    }
+</style>

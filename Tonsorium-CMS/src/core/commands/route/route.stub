@@ -1,0 +1,7 @@
+const express = require('express');
+const router = express.Router();
+const { container } = require("@container");
+const { checkPermission } = require('@middleware');
+const wrapNext = require('@wrapNext');
+
+module.exports = router;

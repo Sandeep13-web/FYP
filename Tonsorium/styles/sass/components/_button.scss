@@ -1,0 +1,89 @@
+.btn-primary{
+    @include btn-primary; 
+    span{
+        display: initial;
+    }
+    &:focus{
+        box-shadow: none;
+    }
+}
+
+.btn-more{
+    @include btn-more;
+    
+    &::before{
+        content: '';
+        width: 25px;
+        height: 25px;
+        border: 2px solid $primary-color;
+        border-radius: 100%;
+        display: block;
+        position: absolute;
+        left: 0;
+        transition: 0.3s ease-in-out;
+    }
+    &:hover{
+        color: $primary-color;
+        &::before{
+            transition: 0.3s ease-in-out;
+            right: 0;
+            width: 100%;
+            height: 25px;
+            border-radius: 15px;
+        }
+    }
+    @media screen and (max-width:991px) {
+        &::before{
+            right: 0;
+            width: 100%;
+            height: 25px;
+            border-radius: 15px;
+        }
+    }
+}
+
+.btn-secondary{
+    @include btn-secondary;
+}
+.btn-green{
+    @include btn-secondary;
+
+    background-color: #0dcaf0 !important;
+    border: 1px solid #0dcaf0 !important;
+    &:hover{
+        background-color: #60c2d6 !important;
+        border: 1px solid #60c2d6 !important;
+    }
+}
+
+.dropdown-btn{
+    background: transparent;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+    padding: 0;
+    img{
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+    }
+    &:hover , &:focus{
+        background-color: transparent;
+        color: #fff;
+        border: 0;
+    }
+}
+
+.book-btn{
+    @include btn-primary;
+    width: 100%;
+    margin-bottom: 10px;
+    display: block;
+    line-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

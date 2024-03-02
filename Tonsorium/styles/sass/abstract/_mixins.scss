@@ -1,0 +1,46 @@
+@mixin btn-primary {
+    background-color: $primary-color !important;
+    color: $primary-white !important;
+    font-size: $text-sm;
+    border-color: $primary-color !important;
+    border-radius: 5px;
+    line-height: 0;
+    padding: 4px 10px;
+    height: 30px;
+    &:hover {
+        background-color: darken($color: $primary-color, $amount: 20%) !important;
+    }
+    &:active,
+    &:focus {
+        box-shadow: 0 0 0 0.25rem rgba(253, 200, 0, 65%);
+    }
+}
+
+@mixin btn-secondary {
+    background-color: #6d6c6c !important;
+    color: #fff !important;
+    font-size: $text-sm;
+    line-height: 0;
+    border-color: #6d6c6c !important;
+    padding: 4px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    height: 30px;
+    // &:hover {
+    //     background-color: darken($color: $primary-color, $amount: 5%);
+    // }
+}
+
+
+@mixin btn-more{
+    font-size: $text-sm;
+    line-height: 19px;
+    color: $primary-color;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s ease-in-out;
+    position: relative;
+    padding: 3px 15px 3px 15px;
+}

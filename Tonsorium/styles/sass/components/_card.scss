@@ -1,0 +1,115 @@
+.barber-card {
+    text-align: center;
+
+    img{
+        max-width: 100%;
+        max-height: 350px;
+        object-fit: cover;
+        width: 100%;
+        object-position: top;
+    }
+    .card-desc {
+        padding-top: 25px;
+
+        .name {
+            text-transform: uppercase;
+            font-size: 34px;
+            color: $secondary-black;
+            margin-bottom: 5px;
+        }
+
+        .position {
+            padding-bottom: 8px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: $primary-color;
+            font-size: 16px;
+        }
+
+        .barber-desc {
+            font-size: 18px;
+            color: $text-color;
+        }
+    }
+}
+
+.services-card {
+    padding: 20px;
+    background-color: #232323;
+    position: relative;
+    transition: 0.5s ease-in-out;
+    box-shadow: 0px 12px 18px -6px #000000;
+    height: 492px;
+    @media screen and (max-width:991px) {
+        height: 100%;
+    }
+    .card-img {
+        position: relative;
+
+        .ant-image {
+            display: block;
+            position: relative;
+
+            &::before {
+                content: "";
+                width: 90%;
+                display: block;
+                height: 90%;
+                position: absolute;
+                background: transparent;
+                z-index: 1;
+                border: 1px solid #bdbdbd;
+                left: 5%;
+                top: 5%;
+            }
+
+            &-img {
+                height: 296px;
+                width: 100%;
+                object-fit: cover;
+                filter: saturate(50%) brightness(80%);
+                transition: 0.5s ease-in-out;
+            }
+        }
+    }
+
+    .card-body {
+        padding-top: 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        color: $primary-white;
+
+        .service-cost-name{
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 32px;
+            @media screen and (max-width:767px) {
+                font-size: 25px;
+            }
+            @media screen and (max-width:575px) {
+                font-size: 18px;
+            }
+        }
+        .service-card-desc{
+            font-size: 18px;
+            line-height: 25px;
+            @media screen and (max-width:767px) {
+                font-size: 14px;
+            }
+        }
+    }
+
+    &:hover{
+        transition: 0.5s ease-in-out;
+        transform: scale(1.05);
+        .card-img{
+            .ant-image{
+                &-img{
+                    filter: none;
+                }
+            }
+        }
+    }
+}

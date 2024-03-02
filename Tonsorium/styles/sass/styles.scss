@@ -1,0 +1,16 @@
+@import './abstract/mixins',
+        './abstract/variables';
+
+@import './components/base',
+        './components/header',
+        './components/footer',
+        './components/button',
+        './components/card';
+
+@import './pages/home',
+        './pages/about',
+        './pages/services',
+        './pages/contact',
+        './pages/booking',
+        './pages/login';
+

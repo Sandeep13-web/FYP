@@ -1,0 +1,9 @@
+const Controller = require('%baseController%');
+
+class %controllerName% extends Controller {
+    constructor(opts){
+        super(opts);
+    }
+}
+
+module.exports = %controllerName%;

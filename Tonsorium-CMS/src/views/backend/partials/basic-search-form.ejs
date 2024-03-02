@@ -1,0 +1,18 @@
+<form class="allow-enter" action="<%- url %>" method="get" autocomplete="off">
+    <div class="form-row align-items-center">
+        <div class="col-auto mb-2" id="">
+            <label class="sr-only"
+                   for="keyword"><%= translateLanguage('keyword', session.translationdata, '検索キーワード') %></label>
+            <input type="text" class="form-control" value="<%= query ? query.keyword : '' %>" id="keyword"
+                   placeholder="<%= translateLanguage('keyword', session.translationdata, '検索キーワード') %>"
+                   name="keyword">
+        </div>
+
+        <div class="form-row align-items-center">
+            <button class="btn btn-primary mb-2 ml-2" type="submit"><em class="fas fa-search"
+                                                                        aria-hidden="true"></em> <%= translateLanguage('Search', session.translationdata) %>
+            </button>
+            <a href="<%- url %>" class="btn btn-primary mb-2 ml-2"><%= translateLanguage('Clear', session.translationdata) %></a>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,136 @@
+.inner-page-banner {
+    background-position: center;
+    background-size: cover;
+    padding-bottom: 320px;
+    filter: saturate(0%) brightness(85%);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 500px;
+    @media screen and (max-width:767px) {
+        min-height: 300px;
+    }
+    @media screen and (max-width:575px) {
+        min-height: 250px;
+    }
+
+    &.about-banner {
+        background-image: url(../../../public/images/about-banner.jpg);
+    }
+
+    &.service-banner {
+        background-image: url(../../../public/images/service-banner.png);
+        filter: saturate(0%) brightness(60%);
+    }
+
+    &.contact-banner {
+        background-image: url(../../../public/images/contact-banner.png);
+        filter: saturate(0%) brightness(60%);
+}
+}
+
+.description-section {
+    position: relative;
+    padding: 40px 0 40px;
+
+    .page-heading {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 71px;
+        color: #ffffff;
+        position: absolute;
+        top: -85px;
+        z-index: 1;
+        @media screen and (max-width:991px) {
+            font-size: 40px;
+            top: -50px;
+        }
+        @media screen and (max-width:575px) {
+            font-size: 35px;
+            top: -40px;
+        }
+        @media screen and (max-width:400px) {
+            font-size: 25px;
+        }
+    }
+
+    .description {
+        &__heading {
+            font-weight: 300;
+            text-transform: uppercase;
+            font-size: 40px;
+            line-height: 45px;
+            @media screen and (max-width:767px) {
+                    font-size: 25px;
+                    line-height: 30px;
+            }
+
+            &::after {
+                content: '';
+                width: 102px;
+                height: 2px;
+                background-color: $secondary-black;
+                display: block;
+                margin-top: 30px;
+            }
+        }
+
+        &__subHeading {
+            padding-top: 30px;
+
+            h4 {
+                font-weight: 600;
+                text-transform: uppercase;
+                font-size: 20px;
+                color: $secondary-black;
+                line-height: 20px;
+                max-width: 485px;
+            }
+
+            p {
+                margin-top: 40px;
+                color: $text-color;
+                max-width: 485px;
+            }
+        }
+    }
+
+    .img-short {
+        box-shadow: 0px 2px 18px 0px rgb(0, 0, 0, 0.3);
+        display: inline-block;
+        height: 429px;
+        @media screen and (max-width:767px) {
+            // height: 100% !important;
+            width: 100% !important;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            .ant-image{
+                width: 100% !important;
+                height: 300px !important;
+            }
+        }
+    }
+    .welcome{
+        margin-bottom: 20px;
+        font-size: 25px;
+        @media screen and (max-width:767px) {
+            font-size: 20px;
+        }
+    }
+}
+
+.barbers {
+    .barber-head {
+        text-align: center;
+    }
+
+    &__list {
+        padding-top: 40px;
+        padding-bottom: 50px;
+
+        .ant-row {
+            gap: 50px 0;
+        }
+    }
+}

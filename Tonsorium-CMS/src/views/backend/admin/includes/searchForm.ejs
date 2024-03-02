@@ -1,0 +1,25 @@
+<form class="allow-enter mt-2π" action="<%- url %>" method="get" autocomplete="off">
+    <div class="form-row align-items-center mb-2">
+        <div class="col-auto" id="">
+            <label class="sr-only"
+                   for="keyword"><%= translateLanguage('keyword', session.translationdata, '検索キーワード') %></label>
+            <input type="text" class="form-control" value="<%= query ? query.keyword : '' %>" id="keyword"
+                   placeholder="<%= translateLanguage('keyword', session.translationdata, '検索キーワード') %>"
+                   name="keyword">
+        </div>
+        <div class="d-flex align-items-center">
+            <input type="checkbox" id="inactive" class="checkbox" <%= query.include_inactive ? 'checked' : '' %> name="include_inactive">
+            <label for="inactive" class="check-label">
+                <%= translateLanguage('Include inactive items', session.translationdata, '非アクティブなアイテムを含める') %>
+            </label>
+        </div>
+        <div class="form-row align-items-center">
+            <button class="btn btn-primary ml-2" type="submit"><em class="fas fa-search"
+                                                                        aria-hidden="true"></em> <%= translateLanguage('Search', session.translationdata) %>
+            </button>
+            <a href="<%- url %>" class="btn btn-primary ml-2">
+                <%= translateLanguage('Clear', session.translationdata, '検索条件をクリア') %>
+                </a>
+        </div>
+    </div>
+</form>

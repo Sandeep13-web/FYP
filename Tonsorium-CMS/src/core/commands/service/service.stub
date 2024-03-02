@@ -1,0 +1,9 @@
+const BaseService = require('%baseService%');
+
+class %serviceName% extends BaseService {
+    constructor() {
+        super();
+    }
+}
+
+module.exports = %serviceName%;

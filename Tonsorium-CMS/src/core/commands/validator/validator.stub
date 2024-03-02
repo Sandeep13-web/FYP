@@ -1,0 +1,7 @@
+const { checkSchema } = require('express-validator');
+const { required } = require("@lib");
+
+let %validator% = checkSchema({
+});
+
+module.exports = { %validator% };

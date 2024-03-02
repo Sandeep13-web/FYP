@@ -1,0 +1,145 @@
+<div class="main-content side-content pt-5">
+    <div class="container-fluid">
+        <div class="inner-body">
+            <!-- Page Header -->
+            <div class="page-header sticky-header">
+                <div>
+                    <h2 class="main-content-title tx-24 mg-b-5"><%= translateLanguage(pageTitle, session.translationdata) %></h2>
+                    <% include ../partials/breadcrumb %>
+                </div>
+
+
+                <div class="col-sm-6 p-0">
+
+                    <% if(checkPermissions(user, "languages.languages.export") == true) { %>
+                        <a style="margin-top: 7px; margin-right:2px; margin-left:2px; "
+                           class="btn  btn-primary  pull-right btn-sm" href="/languages/download"><i
+                                    class="fa fa-download"
+                                    aria-hidden="true"></i> <%= translateLanguage('Download excel for backend', session.translationdata) %>
+                        </a>
+                    <% } %>
+                    <% if(checkPermissions(user, "languages.languages.upload") == true) { %>
+                    <button style="margin-top: 7px; white-space: nowrap;width: 200px;" type="button"
+                            class="btn btn-primary pull-right mb-2 btn-sm" data-toggle="modal"
+                            data-target="#uploadExcelModal">
+                        <em class="fas fa-upload"
+                            aria-hidden="true"></em> <%= translateLanguage('Global Upload excel for backend', session.translationdata) %>
+                    </button>
+                    <% } %>
+                    <!-- Modal -->
+
+
+                </div>
+
+            </div>
+            <!-- End Page Header -->
+            <!-- Row -->
+        </div>
+        <!-- End Row -->
+    </div>
+
+    <div class="container-fluid">
+        <div class="inner-body sticky-row">
+            <div class="mt-2 mb-2">
+                <% include ../partials/messages %>
+            </div>
+            <% include ../partials/basic-search-form %>
+            <!-- Row -->
+            <div class="row row-sm">
+                <div class="col-lg-12">
+                    <div class="card custom-card ext-scrol">
+                        <div class="card-body">
+                            <div class="border">
+                                <table id="translationsTbl" class="table text__bold text-nowrap text-md-nowrap table-striped mg-b-0">
+                                    <thead>
+                                    <tr>
+                                        <th><%= translateLanguage('SN', session.translationdata) %></th>
+                                        <th><%= translateLanguage('Word', session.translationdata) %></th>
+                                        <th><%= translateLanguage('Translation', session.translationdata) %></th>
+                                        <th colspan="3"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <% if(docs.length > 0){
+                                        sn = (pageNum - 1) * pageLimit;
+                                    docs.forEach(function(translation) { %>
+                                        <tr class="tr_clone">
+                                            <td class="sn"><%= sn += 1 %></td>
+                                            <td class="translation-id" hidden><input name="text" class="form-control translation-id-val" value="<%= translation._id ? translation._id : nil %>"></td>
+                                            <td class="word"><%= translation.word ? translation.word : nil %></td>
+                                            <td>
+                                                <input name="text" class="form-control translation-content translation"
+                                                    rows="1"
+                                                    data-href="/languages/update"
+                                                    data-page-url="<%- module %>"
+                                                    data-locale="<%- query.locale ?? 'ja' %>"
+                                                    value="<%= translation.translation ? translation.translation : '' %>">
+                                            </td>
+                                        
+                                            <% if(checkPermissions(user, "languages.languages.create") == true ) { %>
+                                            <td class="lang-check text-center">
+                                                <i class="fa fa-check cursor-pointer update-language" style="cursor: pointer" aria-hidden="true"></i>
+
+                                            </td>
+                                            <% } %>
+                                        </tr>
+                                    <% });
+                                    } else{ %>
+                                        <tr>
+                                            <td colspan="4" style="text-align:center;">
+                                                <%= translateLanguage('No Records found.', session.translationdata) %>
+                                            </td>
+                                        </tr>
+                                    <% } %>
+                                    </tbody>
+                                </table>
+                                <% if(docs.length > 0){ %>
+                                    <% include ../partials/pagination %>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="uploadExcelModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <form class="form-inline" id="reset-form" action="/languages/upload" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_csrf" value="<%-csrfToken%>">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"
+                            id="uploadExcelModal"><%= translateLanguage('Upload excel for backend', session.translationdata) %></h5>
+                        <button type="button" class=" exit"
+                                style="font-size: 1.5rem;background-color: transparent;border: 0; appearance: none; opacity: .5;"
+                                data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-3 control-label"
+                                   style="white-space: nowrap"><%= translateLanguage('Excel File', session.translationdata) %> </label>
+                            <div class="col-sm-6">
+                                <input type="file" name="file" class="form-control"
+                                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default closed "
+                                data-dismiss="modal"><%= translateLanguage('Close', session.translationdata) %></button>
+                        <button type="submit"
+                                class="btn btn-primary pull-right"><%= translateLanguage('Upload', session.translationdata) %></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/js/language.js" defer></script>
+
+
+

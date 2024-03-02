@@ -1,0 +1,25 @@
+<div class="modal fade" id="cancelEdit" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"><%= translateLanguage('Cancel Edit Confirmation',session.translationdata,'編集確認のキャンセル') %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body text-center">
+            <p><%= translateLanguage('Are you sure want to cancel the edit?',session.translationdata,'編集をキャンセルしてもよろしいですか？') %></p>
+        </div>
+        <div class="modal-footer modal-btn">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+            <%= translateLanguage('Resume Edit',session.translationdata,'編集を再開') %>
+        </button>
+        <button type="button" class="btn main-cancel-btn">
+            <a href="<%- url %>" id="back-url">
+                <%= translateLanguage('Discard changes',session.translationdata,'変更を破棄') %>
+            </a>
+        </button>
+        </div>
+    </div>
+    </div>
+</div>
